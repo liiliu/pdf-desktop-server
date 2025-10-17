@@ -1,0 +1,13 @@
+#打印程序
+#adobePath = 'D:\Adobe\Reader 11.0\Reader\AcroRd32.exe'
+adobePath = 'D:\Adobe\Reader1\Reader\AcroRd32.exe'
+#打印时间间隔
+printInterval = 5
+#端口名称
+name = 'com11'
+#波特率
+baud = 115200
+#图片目录
+imageDir = './images'
+#pdf目录
+pdfDir = './pdfs'
