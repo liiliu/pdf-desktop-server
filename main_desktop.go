@@ -158,13 +158,13 @@ func main() {
 		container.NewTabItem("标签打印", tab3Content),
 	)
 
-	// 日志区域 - 放在右侧
+	// 日志区域 - 放在右侧，支持滚动
 	logTitle := widget.NewLabelWithStyle("📋 日志信息", fyne.TextAlignLeading, fyne.TextStyle{Bold: true})
-	logHeader := container.NewBorder(nil, clearLogBtn, nil, nil, logTitle)
-	logPanel := container.NewBorder(logHeader, nil, nil, nil, logWidget)
-	logContainer := container.NewVBox(
-		logPanel,
-	)
+	logHeader := container.NewBorder(nil, nil, nil, clearLogBtn, logTitle)
+	
+	// 将日志widget放入滚动容器，支持自动扩展和滚动
+	logScroll := container.NewScroll(logWidget)
+	logContainer := container.NewBorder(logHeader, nil, nil, nil, logScroll)
 
 	// 主布局：左侧是功能区，右侧是日志
 	// 使用 HSplit 可以让用户调整分割比例
