@@ -242,6 +242,13 @@ func createPrintTab(logger *Logger) fyne.CanvasObject {
 	// 设置按钮样式
 	printBtn.Importance = widget.HighImportance
 
+	// 清空按钮
+	clearBtn := widget.NewButton("🗑️ 清空", func() {
+		deviceNosEntry.SetText("")
+		logger.Log("✓ 已清空输入框")
+	})
+	clearBtn.Importance = widget.LowImportance
+
 	// 布局 - 简单的垂直布局，输入框随内容自动扩展
 	title := widget.NewLabelWithStyle("📝 输入设备号", fyne.TextAlignLeading, fyne.TextStyle{Bold: true})
 
@@ -249,7 +256,9 @@ func createPrintTab(logger *Logger) fyne.CanvasObject {
 		title,
 		widget.NewSeparator(),
 		deviceNosEntry, // 输入框会随内容自动扩展
-		container.NewPadded(printBtn),
+		container.NewPadded(
+			container.NewGridWithColumns(2, printBtn, clearBtn),
+		),
 	)
 
 	// 整个表单可以滚动，内容多时向下扩展
@@ -295,6 +304,13 @@ func createMultiPrintTab(logger *Logger) fyne.CanvasObject {
 	// 设置按钮样式
 	printBtn.Importance = widget.HighImportance
 
+	// 清空按钮
+	clearBtn := widget.NewButton("🗑️ 清空", func() {
+		deviceNosEntry.SetText("")
+		logger.Log("✓ 已清空输入框")
+	})
+	clearBtn.Importance = widget.LowImportance
+
 	// 布局 - 简单的垂直布局，输入框随内容自动扩展
 	title := widget.NewLabelWithStyle("📦 输入设备号（批量）", fyne.TextAlignLeading, fyne.TextStyle{Bold: true})
 
@@ -302,7 +318,9 @@ func createMultiPrintTab(logger *Logger) fyne.CanvasObject {
 		title,
 		widget.NewSeparator(),
 		deviceNosEntry, // 输入框会随内容自动扩展
-		container.NewPadded(printBtn),
+		container.NewPadded(
+			container.NewGridWithColumns(2, printBtn, clearBtn),
+		),
 	)
 
 	// 整个表单可以滚动，内容多时向下扩展
@@ -434,6 +452,21 @@ func createTagPrintTab(logger *Logger) fyne.CanvasObject {
 	// 设置按钮样式
 	printBtn.Importance = widget.HighImportance
 
+	// 清空按钮
+	clearBtn := widget.NewButton("🗑️ 清空所有", func() {
+		productNameEntry.SetText("")
+		productColorEntry.SetText("")
+		productDateEntry.SetText(time.Now().Format("2006-01-02"))
+		productNumEntry.SetText("")
+		grossWeightEntry.SetText("")
+		netWeightEntry.SetText("")
+		barCode69TypeEntry.SetText("401")
+		boxNumEntry.SetText("")
+		deviceNosEntry.SetText("")
+		logger.Log("✓ 已清空所有输入框")
+	})
+	clearBtn.Importance = widget.LowImportance
+
 	// 布局 - 使用分组和更好的视觉层次
 	productInfoTitle := widget.NewLabelWithStyle("📦 产品信息", fyne.TextAlignLeading, fyne.TextStyle{Bold: true})
 	weightInfoTitle := widget.NewLabelWithStyle("⚖️ 重量信息", fyne.TextAlignLeading, fyne.TextStyle{Bold: true})
@@ -459,7 +492,9 @@ func createTagPrintTab(logger *Logger) fyne.CanvasObject {
 		deviceInfoTitle,
 		deviceNosEntry, // 输入框会随内容自动扩展
 
-		container.NewPadded(printBtn),
+		container.NewPadded(
+			container.NewGridWithColumns(2, printBtn, clearBtn),
+		),
 	)
 
 	// 整个表单可以滚动
